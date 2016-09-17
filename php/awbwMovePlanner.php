@@ -147,7 +147,7 @@ document.onmouseup=new Function("isdrag=false");
 </script>
 
 </head>
-<body bgcolor="#4D4D4D">
+<body bgcolor="#FFFFE0">
 
 <?php
 extract($_GET);

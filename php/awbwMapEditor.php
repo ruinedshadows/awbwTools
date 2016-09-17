@@ -532,7 +532,7 @@ function roads()
 </script>
 
 </head>
-<body bgcolor="#4F4F4F" onmouseup="Budapest()">
+<body bgcolor="#FFFFE0" onmouseup="Budapest()">
 
 <?php
 extract($_GET);
