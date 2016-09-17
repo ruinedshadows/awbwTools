@@ -111,8 +111,8 @@ function movemouse(e)
 {
   if (isdrag)
   {
-    dobj.style.left = (nn6 ? tx + e.clientX - x : tx + event.clientX - x) - (nn6 ? tx + e.clientX - x : tx + event.clientX - x) % 16 + 8;
-    dobj.style.top  = (nn6 ? ty + e.clientY - y : ty + event.clientY - y) - (nn6 ? ty + e.clientY - y : ty + event.clientY - y) % 16 + 8;
+    dobj.style.left = (nn6 ? tx + e.clientX - x : tx + event.clientX - x) - ((nn6 ? tx + e.clientX - x : tx + event.clientX - x) % 16);
+    dobj.style.top  = (nn6 ? ty + e.clientY - y : ty + event.clientY - y) - ((nn6 ? ty + e.clientY - y : ty + event.clientY - y) % 16);
     return false;
   }
 }
@@ -147,7 +147,7 @@ document.onmouseup=new Function("isdrag=false");
 </script>
 
 </head>
-<body bgcolor="#4F4F4F">
+<body bgcolor="#4D4D4D">
 
 <?php
 extract($_GET);
