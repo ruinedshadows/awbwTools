@@ -7,20 +7,24 @@
    </title>
 </head>
 
-<body bgcolor="#FFFFE0">
+<body id="body" bgcolor="#FFFFE0">
    <h1>AWBW User Search by RuinedShadows</h1>
    <h3>
       This tool simply generates a url by appending the username you type to the
        appropriate awbw url.
    </h3>
+   <h3>
+      Click 'Go!' (or on the link) or press 'Enter' to follow the generated link.
+   </h3>
    <p>
       Eventually, my goal is to have this tool search for similar users and
       commonly searched users but for now it's basically a url builder.
    </p>
-   <form>
-      <p> Username: </p>
-      <input type="text" name="username" id="usernameField" >
-   </form>
+   <p> Username: </p>
+   <input type="username" name="username" id="usernameField" >
+   <input type="button" id="goButton"
+      onclick="location.href=document.getElementById('displayedLink').href"
+      value="Go!">
    <p>
       Link:
       <a id="displayedLink" href="http://awbw.amarriner.com/profile.php">
@@ -32,10 +36,43 @@
 <script type="text/javascript">
 
    var urlToSearch = document.getElementById('displayedLink');
-   var username = document.getElementById('usernameField');
+   var usernameField = document.getElementById('usernameField');
 
-   username.onchange = username.onkeyup = function() {
-      urlToSearch.search = "?username=" + encodeURIComponent(username.value);
+   body.onload =
+   usernameField.onclick =
+   usernameField.onchange =
+   usernameField.onkeyup = function(event) {
+
+      if (event.which == 13) {
+         document.getElementById('goButton').click();
+      }
+
+
+      var username = usernameField.value;
+
+      var temp = [];
+
+      // check if we should replace with the ascii hex value
+      // if not then use utf 8 encoding function
+      for (var n = 0; n < username.length; n++) {
+
+         var charCode = Number(username.charCodeAt(n));
+
+         if (charCode > 128 && charCode < 255 && charCode != NaN) {
+            var hex = charCode.toString(16);
+            temp.push("%");
+            temp.push(hex);
+         } else {
+            var utf8 = encodeURIComponent(username.charAt(n));
+            temp.push(utf8);
+         }
+      }
+
+      username = temp.join('');
+
+      console.log(username);
+
+      urlToSearch.search = "?username=" + username;
       urlToSearch.firstChild.data = urlToSearch.href;
    };
 
