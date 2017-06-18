@@ -1,0 +1,44 @@
+<!-- Written by RuinedShadows. -->
+<html>
+   <head>
+   <link rel="icon" href="http://awbw.amarriner.com/favicon.ico" type="image/x-icon">
+   <title>
+      AWBW User Search by RuinedShadows
+   </title>
+</head>
+
+<body bgcolor="#FFFFE0">
+   <h1>AWBW User Search by RuinedShadows</h1>
+   <h3>
+      This tool simply generates a url by appending the username you type to the
+       appropriate awbw url.
+   </h3>
+   <p>
+      Eventually, my goal is to have this tool search for similar users and
+      commonly searched users but for now it's basically a url builder.
+   </p>
+   <form>
+      <p> Username: </p>
+      <input type="text" name="username" id="usernameField" >
+   </form>
+   <p>
+      Link:
+      <a id="displayedLink" href="http://awbw.amarriner.com/profile.php">
+         http://awbw.amarriner.com/profile.php
+      </a>
+   </p>
+</body>
+
+<script type="text/javascript">
+
+   var urlToSearch = document.getElementById('displayedLink');
+   var username = document.getElementById('usernameField');
+
+   username.onchange = username.onkeyup = function() {
+      urlToSearch.search = "?username=" + encodeURIComponent(username.value);
+      urlToSearch.firstChild.data = urlToSearch.href;
+   };
+
+</script>
+
+</html>
